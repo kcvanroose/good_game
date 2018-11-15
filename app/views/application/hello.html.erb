@@ -1,0 +1,13 @@
+<div class="row">
+  <h1 class="small-12 columns">Welcome Gamer!</h1>
+  <div class="small-12 large-4 columns">
+    <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+      <%= label_tag :name %>
+      <%= text_field_tag :name %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+      <input class="button" type=submit value='Login'>
+    <% end %>
+    <%= link_to "Create a new account", new_user_path, class: "button" %>
+  </div>
+</div>

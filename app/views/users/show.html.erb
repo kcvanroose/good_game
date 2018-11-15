@@ -1,0 +1,30 @@
+<div class="row">
+  <h1 class="columns">Player Profile</h1>
+</div>
+<div class="row background">
+  <div class="profile small-12 large-4 columns">
+    <img src=<%= @user.avatar.file.nil? ? default_avatar_path : @user.avatar.url %> />
+  </div>
+  <div class="small-12 large-8 columns">
+    <h2 class="player_title"><%= @user.name %></h2>
+    <p class= "wish_button" ><%= link_to "My Wishlist", wishlist_path, class: "space button" %></p>
+    <p class="sub">Bio</p>
+    <p><%= @user.bio %></p>
+    <p class="sub">Games</p>
+      <% @user.games.each do |game| %>
+        <p><%= link_to game.title, game_path(game.id) %></p>
+    <% end %>
+    <% if current_user %>
+      <% if @user.id == current_user.id %>
+        <a class="button" href="#">Add Game</a>
+          <%= link_to "Edit", edit_user_path(@user), class: "button" %>
+          <%= form_tag user_path(@user.id), method: :delete do %>
+          <input class="bold button" type=submit value='Delete'>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row back_button">
+  <%= link_to "Back to all players", users_path, class: "button" %>
+</div>

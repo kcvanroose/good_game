@@ -1,0 +1,14 @@
+<div class="row">
+  <h1 class="small-12 columns">Edit account</h1>
+  <div class="small-12 columns">
+  <%= form_for @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+    <%= f.label "upload picture"%>
+    <%= f.file_field :avatar %>
+    <%= f.submit %>
+  <% end %>
+  </div>
+</div>

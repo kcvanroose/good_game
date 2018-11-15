@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="smal-12 columns">
+    <h1>Add a Game to Your Collection!</h1>
+  </div>
+  <div class="small-12 columns">
+  <%= form_for @user_game do |f| %>
+    <%= f.fields_for :game do |g| %>
+      <label for="game-title-choice">Choose a game:</label>
+      <input list="game-title" id="game-title-choice" name="user_game[game_title]" />
+      <datalist id="game-title">
+        <% Game.all.each do |game| %>
+          <option value="<%= game.title %>"></option>
+        <% end %>
+      </datalist>
+      <%= g.label :genre %>
+      <%= g.collection_select :genre_id, Genre.all, :id, :name %>
+      <%= g.label :console %>
+      <%= g.collection_select :console_id, Console.all, :id, :name %>
+    <% end %>
+    <%= f.label "Rating out of 10" %>
+    <%= f.text_field :rating %>
+      Is this game available to exchange? <%= f.check_box :available, {}, true, false %>
+    <%= f.submit %>
+  <% end %>
+</div>
+</div>

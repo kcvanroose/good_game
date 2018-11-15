@@ -1,0 +1,25 @@
+<div class="row">
+  <h1 class="small-12 columns">All Players</h1>
+
+
+  <% @users.each do |user| %>
+    <div class="small-12 large-4 columns">
+      <div class="background">
+        <div class="row">
+        <div class="small-3 columns">
+          <img src="<%= user.avatar %>">
+        </div>
+        <div class="small-9 columns">
+          <%= link_to user.name, user_path(user) %>
+        <p>Average rating: <%= user.average_rating %>/5</p>
+        <% if user.average_rating.is_a? Numeric %>
+          <% user.average_rating.times do %>
+            <i class="fas fa-star %>"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+      </div>
+    </div>
+  <% end %>
+</div>

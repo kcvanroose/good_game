@@ -1,0 +1,61 @@
+<div class="background row">
+  <h1 class="small-12 columns"><%= @game.title %></h1>
+  <div class="small-12 large-4 columns">
+    <p class="sub">Consoles: <% @game.consoles.each do |console| %></p>
+          <p><%= link_to console.name, console_path(console.id) %></p>
+          <% end %>
+  </div>
+  <div class="small-12 large-4 columns">
+    <p class="sub">Year Released:<p>
+    <p><%= @game.year_released %></p>
+  </div>
+  <div class="small-12 large-4 columns">
+    <p class="sub">Players with this game:</p>
+    <% @game.users.each do |player| %>
+      <p><%= link_to player.name, user_path(player.id) %></p>
+    <% end %>
+  </div>
+  <div class="small-12 large-4 columns">
+    <p class="sub">Average rating (<%= @game.user_games.count %>):</p>
+    <%= @game.average_rating %>/5
+    <% if @game.average_rating.is_a? Numeric %>
+      <% @game.average_rating.times do %>
+        <i class="fas fa-star %>"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="small-12 large-4 columns">
+    <p class="sub"> Number of available copies: </p>
+    <%= @game.available_copies %>
+  </div>
+  <div class="small-12 large-4 columns">
+    <p class="sub"> Players who want this game: </p>
+    <%= @game.wishlist_games.size %></p>
+  </div>
+
+  <% if current_user %>
+    <% if !current_user.games.find_by_id(@game.id) %>
+      <div class="small-12 columns">
+        <p class="sub"> Rate this game: </p>
+        <%= form_tag rate_path(@game) do %>
+        <%= radio_button_tag(:rating, 1) %>
+        <%= label_tag("1") %>
+        <%= radio_button_tag(:rating, 2) %>
+        <%= label_tag("2") %>
+        <%= radio_button_tag(:rating, 3) %>
+        <%= label_tag("3") %>
+        <%= radio_button_tag(:rating, 4) %>
+        <%= label_tag("4") %>
+        <%= radio_button_tag(:rating, 5) %>
+        <%= label_tag("5") %>
+        <%= submit_tag "Rate!", class: "button" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+<div class="row">
+  <%= button_to "Add To Wishlist", add_to_wishlist_path(@game), class: "space button" %>
+  <%= link_to "View all games", games_path, class: "space button" %>
+</div>

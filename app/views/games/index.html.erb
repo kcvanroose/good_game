@@ -1,0 +1,30 @@
+<div class="row">
+  <h1 class="small-12 columns">All Games</h1>
+  <div class="small-12 columns">
+    <%= link_to "Search by Genre:", genres_path %> </p>
+    <%= form_tag games_path, :method => 'get' do %>
+    <%= collection_select :game, :genre_id, Genre.all, :id, :name %>
+    <%= submit_tag "Search", class: "button" %>
+    <%= link_to "View all games", games_path, class: "button" %>
+    <% end %>
+  </div>
+
+     <% total_ratings = [] %>
+    <% @games.each do |game| %>
+    <div class="index_profile small-12 large-4 columns">
+      <div class="background">
+        <%= link_to game.title, game_path(game.id) %></br>
+        <%= game.average_rating %>/5
+        <% if game.average_rating.is_a? Numeric %>
+          <% game.average_rating.times do %>
+            <i class="fas fa-star %>"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <div class="small-12 columns">
+      <%= link_to "Add new game", new_game_path, class: "space button" %>
+    </div>
+
+</div>

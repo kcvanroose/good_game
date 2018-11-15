@@ -1,0 +1,10 @@
+<div class="row">
+    <h1 class="small-12 columns">All Consoles</h1>
+      <% @consoles.each do |console| %>
+      <div class="index_profile small-12 large-4 columns">
+        <div class="background">
+          <%= link_to console.name, console_path(console) %>
+        </div>
+      </div>
+      <% end %>
+</div>

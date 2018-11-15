@@ -1,0 +1,10 @@
+<div class="background row">
+  <div class="small-12 columns">
+    <h1>All Genres</h1>
+    <% @genres.each do |genre| %>
+      <%= genre.name %><br><% genre.games.each do |game| %>
+        <p><%= link_to game.title, game_path(game) %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
