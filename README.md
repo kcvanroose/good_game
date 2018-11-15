@@ -1,25 +1,22 @@
-# README
+# Good Game (gg)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A site for people to log the games they have played, leave ratings and create wishlist of games they want.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- Users can view other users games and ratings
+- Users can search for games based on console, genre, year published
+- Users can log the games they have played
+- Users can view game details- year, publisher, genre, console, average rating
 
-* System dependencies
+## Stack
 
-* Configuration
+- Ruby
+- Ruby on Rails
+- Active Record
+- sqlite 3
+- bcrypt
+- jbuilder
+- HTML
+- CSS
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# good_game
